@@ -1,3 +1,4 @@
+from datetime import datetime
 from trainenvironment import train_color_model
 from dataset import load_color_table, create_color_table, generate_random_colors_with_index, display_color_table, ColorDataset
 from model import ColorPredictor
@@ -5,6 +6,8 @@ import torch
 from torch.utils.data import DataLoader
 
 if __name__ == "__main__":
+    start_date = datetime.now()
+    name = start_date.strftime("%Y%m%d_%H%M%S")
     
     color_table_path = 'color_table.json'
     color_table_json = load_color_table(color_table_path)
