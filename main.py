@@ -1,9 +1,11 @@
 from datetime import datetime
 from trainenvironment import train_color_model
-from dataset import load_color_table, create_color_table, generate_random_colors_with_index, display_color_table, ColorDataset
+from dataset import load_color_table, create_color_table, generate_random_colors_with_index, ColorDataset
 from model import ColorPredictor
 import torch
 from torch.utils.data import DataLoader
+from render import ColorRenderer
+
 
 if __name__ == "__main__":
     start_date = datetime.now()
@@ -46,4 +48,8 @@ if __name__ == "__main__":
     difference_percentage = (different_elements / predicted_indexes.numel()) * 100.0
     print(f'accuracy model:{difference_percentage} %')
     # Display the color table as an image
-    display_color_table(predicted_color_table)
+    
+    color_renderer = ColorRenderer(predicted_color_table)
+    color_image = color_renderer.generate_color_image()
+    color_renderer.save_image(color_image, save_path="output/color_table.png")
+    color_renderer.display_image(color_image)
