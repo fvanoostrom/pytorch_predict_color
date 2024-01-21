@@ -51,5 +51,5 @@ if __name__ == "__main__":
     
     color_renderer = ColorRenderer(predicted_color_table)
     color_image = color_renderer.generate_color_image()
-    color_renderer.save_image(color_image, save_path="output/color_table.png")
+    color_renderer.save_image(color_image, save_path=f"output/{name}.png")
     color_renderer.display_image(color_image)
